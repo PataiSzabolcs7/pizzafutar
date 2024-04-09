@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     createButton.addEventListener("click", async function(){
         let fazon = document.getElementById("fazon").value;
-        let baseUrl='http://localhost/pizzafutar/index.php?futar/'+fazon;
+        let baseUrl='http://localhost/pizzafutar/pizzafutar/index.php?futar/'+fazon;
         const formdata= new FormData(document.getElementById("dolgozoForm")); 
         let options={
             method: "POST",
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let response= await fetch(baseUrl, options);
     });
     updateButton.addEventListener("click", async function(){
-        let baseUrl='http://localhost/pizzafutar/index.php?futar/'+fazon;
+        let baseUrl='http://localhost/pizzafutar/pizzafutar/index.php?futar/'+fazon;
         let object={
             fazon: document.getElementById("fazon").value,
             fnev: document.getElementById("fnev").value,
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let response= await fetch(baseUrl, options);
     });
     readButton.addEventListener("click", async function(){
-        let baseUrl="http://localhost/pizzafutar/index.php?futar";
+        let baseUrl="http://localhost/pizzafutar/pizzafutar/index.php?futar";
         let options={
             method: "GET",
             mode: "cors"
@@ -53,31 +53,31 @@ document.addEventListener("DOMContentLoaded", function() {
         for(let futar of futarok){
             tablazat+= futarSor(futar);
         }
-        futarDiv.innerHTML = tablazat+"</tbody> </table>";
+        futarDiv.innerHTML = tablazat + "</div> </div>";
     }
     function futarSor(futar){
-        let sor=`<tr>
-                    <td>${futar.fazon}</td>
-                    <td>${futar.fnev}</td>
-                    <td>${futar.ftel}</td>
-                    <td>
-                        <button type="button" class="btn btn-outline-success" id="select" onclick="adatBetoltes(${futar.fazon}, '${futar.fnev}', '${futar.ftel}')" ><i class="fa-regular fa-hand-pointer"></i></button>
-                        <button type="button" class="btn btn-outline-danger" id="delete" onclick="adatTorles(${futar.fazon})" ><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>`;
+        let sor=
+        `
+                <div class="col-lg-3 col-sm-12">
+                    <div class="card m-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${futar.fnev}</h5>
+                            <h6>${futar.fazon}</h6>
+                            <p class="card-text">${futar.ftel}.</p>
+                            <button type="button" class="btn btn-outline-success" id="select" onclick="adatBetoltes(${futar.fazon}, '${futar.fnev}', '${futar.ftel}')" ><i class="fa-regular fa-hand-pointer"></i></button>
+                            <button type="button" class="btn btn-outline-danger" id="delete" onclick="adatTorles(${futar.fazon})" ><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                `;
         return sor;
     }
     function futarFejlec(){
-        let fejlec=`<table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Azonosító</th>
-                                <th>Név</th>
-                                <th>Telefonszám</th>
-                                <th>Művelet</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
+        let fejlec=`
+            <div class="container">
+                <div class="row">
+
+            `;
         return fejlec;
     }
 });
